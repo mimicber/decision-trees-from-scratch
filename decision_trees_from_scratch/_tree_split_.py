@@ -9,8 +9,12 @@ def evaluate_feature(feature, target, criterion, sample_weight, random_state):
     best_threshold = None
     best_criterion_value = None
 
+    #if len(target) < 2:
+    #    return best_threshold, best_criterion_value
+
     if len(target) < 2:
-        return best_threshold, best_criterion_value
+        return None, None, None
+
 
     thresholds = moving_average(feature)
     node_impurity = None
@@ -71,7 +75,12 @@ def split(X, y, criterion, sample_weight, random_state):
         elif criterion_val > best[3]:
             best = [f_name, f_vals, threshold, criterion_val]
     #
-    
+    if best is not None:
+        print("* Best split feature =", best[0])
+        print("* Best split threshold =", best[2])
+        print("* Best split criterion_val =", best[3])
+
+
     #print("* Best split feature =", best[0])
     #print("* Best split threshold =", best[2])
     #print("* Best split criterion_val =", best[3])
