@@ -71,7 +71,11 @@ def split(X, y, criterion, sample_weight, random_state):
         elif criterion_val > best[3]:
             best = [f_name, f_vals, threshold, criterion_val]
     #
-    print("* Best split feature =", best[0])
-    print("* Best split threshold =", best[2])
-    print("* Best split criterion_val =", best[3])
+    if best is not None:
+        print("* Best split feature =", best[0])
+        print("* Best split threshold =", best[2])
+        print("* Best split criterion_val =", best[3])
+    else:
+        print("* No valid split found for this node")
+    
     return best, node_impurity
