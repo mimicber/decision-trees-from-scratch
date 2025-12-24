@@ -140,8 +140,9 @@ class Tree:
         if self.leaf:
             # What percentage of initial classes fall in this leaf
             # return self._root_y_classes[np.argmax(self.node_y_count / self._root_y_count)]
-            return self.node_y_count / len(self.node_y)
-
+            #return self.node_y_count / len(self.node_y)
+            return self.node_y_count / np.sum(self.node_y_count)
+            
         if entry[self.feature] <= self.threshold:
             return self.left.predict_entry_proba(entry)
         else:
